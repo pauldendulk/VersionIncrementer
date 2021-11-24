@@ -2,7 +2,7 @@
 
 namespace VersionUpdater
 {
-    public class Version
+    public class SemVer
     {
         public int Major { get; set; }
         public int Minor { get; set; }
@@ -11,7 +11,7 @@ namespace VersionUpdater
         public string? PreRelease { get; set; }
         public string? FullVersion { get; set; }
 
-        public static Version Parse(string version)
+        public static SemVer Parse(string version)
         {
             var (firstPart, secondPart) = SplitOnDash(version);
 
@@ -19,7 +19,7 @@ namespace VersionUpdater
 
             if (elements.Length > 4) throw new Exception("Version can only have 4 or less elements");
 
-            return new Version
+            return new SemVer
             {
                 Major = int.Parse(elements[0]),
                 Minor = elements.Length > 1 ? int.Parse(elements[1]) : 0,
